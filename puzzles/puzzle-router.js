@@ -5,7 +5,7 @@ const Puzzles = require("./puzzle-model.js");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  Puzzles.getWords()
+  Puzzles.getPuzzles()
     .then(puzzles => {
       res.status(200).json(puzzles);
     })

@@ -3,7 +3,12 @@ exports.up = function(knex) {
     .createTable("users", tbl => {
       tbl.increments();
 
-      tbl.string("name", 255).notNullable();
+      tbl
+        .string("username", 255)
+        .notNullable()
+        .unique();
+
+      tbl.string("password", 8000).notNullable();
     })
     .createTable("puzzles", tbl => {
       tbl.increments();

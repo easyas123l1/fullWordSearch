@@ -27,8 +27,8 @@ router.post("/login", (req, res) => {
 
   Users.findBy(username)
     .then(user => {
-      console.log(user);
       if (user && bcrypt.compareSync(password, user.password)) {
+        req.session.user = user;
         res.status(200).json({ message: `Welcome ${user.username}!` });
       } else {
         res.status(401).json({ message: "Invalid Credentials Login" });
@@ -50,6 +50,22 @@ router.get("/", restricted, (req, res) => {
       console.log(err);
       res.status(500).json({ message: "failed to get users" });
     });
+});
+
+router.get("/logout", (req, res) => {
+  if (req.session) {
+    req.session.destroy(err => {
+      if (err) {
+        res.json({
+          message: "you can checkout any time you like, but you can never leave"
+        });
+      } else {
+        res.status(204).end();
+      }
+    });
+  } else {
+    res.status(200).json({ message: "never was logged in" });
+  }
 });
 
 router.post("/register", (req, res) => {});

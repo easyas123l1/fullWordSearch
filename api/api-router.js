@@ -14,7 +14,7 @@ router.post("/register", (req, res) => {
 
   Users.addUser(user)
     .then(saved => {
-      res.status(201).json(saved);
+      res.status(201).json({ message: `Welcome ${user.username}!` });
     })
     .catch(err => {
       console.log(err);
@@ -67,7 +67,5 @@ router.get("/logout", (req, res) => {
     res.status(200).json({ message: "never was logged in" });
   }
 });
-
-router.post("/register", (req, res) => {});
 
 module.exports = router;

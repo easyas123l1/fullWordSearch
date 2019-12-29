@@ -33,7 +33,7 @@ const sessionConfig = {
 server.use(express.json());
 server.use(helmet());
 server.use(cors());
-server.use(morgan("tiny"));
+server.use(morgan("dev"));
 server.use(session(sessionConfig));
 
 server.use("/puzzles", PuzzleRouter);

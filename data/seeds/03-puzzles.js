@@ -1,3 +1,3 @@
 exports.seed = function(knex) {
-  return knex("puzzles").insert([]);
+  // return knex("puzzles").insert([]);
 };

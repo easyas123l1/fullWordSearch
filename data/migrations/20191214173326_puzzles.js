@@ -1,5 +1,13 @@
 exports.up = function(knex) {
   return knex.schema
+    .createTable("roles", tbl => {
+      tbl.increments();
+
+      tbl
+        .string("role")
+        .notNullable()
+        .unique();
+    })
     .createTable("users", tbl => {
       tbl.increments();
 
@@ -9,6 +17,17 @@ exports.up = function(knex) {
         .unique();
 
       tbl.string("password", 8000).notNullable();
+
+      tbl.date("created").notNullable();
+
+      tbl
+        .integer("role_id")
+        .unsigned()
+        .notNullable()
+        .references("id")
+        .inTable("roles")
+        .onDelete("RESTRICT")
+        .onUpdate("CASCADE");
     })
     .createTable("puzzles", tbl => {
       tbl.increments();
@@ -40,6 +59,10 @@ exports.up = function(knex) {
         .notNullable()
         .index();
 
+      tbl.string("position").notNullable();
+
+      tbl.string("direction").notNullable();
+
       tbl
         .integer("puzzle_id")
         .unsigned()
@@ -52,6 +75,7 @@ exports.up = function(knex) {
 
 exports.down = function(knex) {
   return knex.schema
+    .dropTableIfExists("roles")
     .dropTableIfExists("users")
     .dropTableIfExists("puzzles")
     .dropTableIfExists("words");

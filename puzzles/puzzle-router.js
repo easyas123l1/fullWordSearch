@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 const Puzzles = require("./puzzle-model.js");
 
+// get all puzzles
 router.get("/", (req, res) => {
   Puzzles.getPuzzles()
     .then(puzzles => {

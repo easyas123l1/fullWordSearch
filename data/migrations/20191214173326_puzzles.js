@@ -48,7 +48,7 @@ exports.up = function(knex) {
         .unsigned()
         .references("id")
         .inTable("users")
-        .onDelete("CASCADE")
+        .onDelete("RESTRICT")
         .onUpdate("CASCADE");
     })
     .createTable("words", tbl => {
@@ -68,7 +68,7 @@ exports.up = function(knex) {
         .unsigned()
         .references("id")
         .inTable("puzzles")
-        .onDelete("CASCADE")
+        .onDelete("RESTRICT")
         .onUpdate("CASCADE");
     });
 };

@@ -4,7 +4,8 @@ const cors = require("cors");
 const morgan = require("morgan");
 const session = require("express-session");
 const KnexSessionStore = require("connect-session-knex")(session);
-const ApiRouter = require("./api/api-router.js");
+
+const UserRouter = require("./user/user-router.js");
 const WordRouter = require("./words/word-router.js");
 const PuzzleRouter = require("./puzzles/puzzle-router.js");
 const knex = require("./data/db-config");
@@ -36,10 +37,10 @@ server.use(cors());
 server.use(morgan("dev"));
 server.use(session(sessionConfig));
 
-server.use("/puzzles", PuzzleRouter);
-server.use("/words", WordRouter);
+server.use("/api/puzzle", PuzzleRouter);
+server.use("/api/word", WordRouter);
 
-server.use("/api", ApiRouter);
+server.use("/api/user", UserRouter);
 
 // server sanity check
 server.use("/", (req, res) => {

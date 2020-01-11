@@ -8,6 +8,7 @@ const KnexSessionStore = require("connect-session-knex")(session);
 const UserRouter = require("./user/user-router.js");
 const WordRouter = require("./words/word-router.js");
 const PuzzleRouter = require("./puzzles/puzzle-router.js");
+const AdminRouter = require("./admin/admin-router.js");
 const knex = require("./data/db-config");
 
 const server = express();
@@ -39,12 +40,18 @@ server.use(session(sessionConfig));
 
 server.use("/api/puzzle", PuzzleRouter);
 server.use("/api/word", WordRouter);
-
 server.use("/api/user", UserRouter);
+server.use("/api/admin", AdminRouter);
 
 // server sanity check
 server.use("/", (req, res) => {
   res.status(200).json("server is running!");
+});
+
+// error handling middleware
+server.use((err, req, res, next) => {
+  console.log(err);
+  res.status(err.status).json(err.message);
 });
 
 module.exports = server;

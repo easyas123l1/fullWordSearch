@@ -1,8 +1,6 @@
-const express = require("express");
+const router = require("express").Router();
 
 const Puzzles = require("./puzzle-model.js");
-
-const router = express.Router();
 
 router.get("/", (req, res) => {
   Puzzles.getPuzzles()

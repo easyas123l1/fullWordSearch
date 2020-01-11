@@ -59,6 +59,7 @@ router.put("/:id", restricted, (req, res) => {
     });
 });
 
+// logout user
 router.get("/logout", (req, res) => {
   if (req.session) {
     req.session.destroy(err => {

@@ -4,7 +4,7 @@ const Admin = require("./admin-model.js");
 
 // get all users restricted!
 router.get("/", restricted, (req, res) => {
-  Users.getUsers()
+  Admin.getUsers()
     .then(user => {
       res.status(200).json(user);
     })

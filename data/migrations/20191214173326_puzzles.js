@@ -20,6 +20,16 @@ exports.up = function(knex) {
 
       tbl.date("created").notNullable();
 
+      tbl.string("fullname", 255);
+
+      tbl.string("phone", 255);
+
+      tbl.string("address", 255);
+
+      tbl.string("state", 255);
+
+      tbl.integer("zip");
+
       tbl
         .integer("role_id")
         .unsigned()

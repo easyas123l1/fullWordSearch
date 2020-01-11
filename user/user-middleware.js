@@ -1,5 +1,6 @@
 module.exports = {
-  validRegLog
+  validRegLog,
+  createUser
 };
 
 async function validRegLog(req, res, next) {
@@ -17,6 +18,15 @@ async function validRegLog(req, res, next) {
       status: 400,
       message: "Missing password"
     });
+  }
+  next();
+}
+
+async function createUser(req, res, next) {
+  let user = req.body;
+  req.body.created = Date.now();
+  if (!user.role_id) {
+    req.body.role_id = 1;
   }
   next();
 }

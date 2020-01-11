@@ -3,10 +3,10 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const Users = require("./user-model.js");
-const { validRegLog } = require("./user-middleware");
+const { validRegLog, createUser } = require("./user-middleware");
 const restricted = require("../auth/restricted-middleware");
 
-router.post("/register", validRegLog, (req, res) => {
+router.post("/register", validRegLog, createUser, (req, res) => {
   let user = req.body;
   const hash = bcrypt.hashSync(user.password, 12);
   user.password = hash;

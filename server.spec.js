@@ -1,4 +1,4 @@
-const request = require("supertext");
+const request = require("supertest");
 
 const server = require("./server");
 

@@ -33,7 +33,9 @@ function addWords(words) {
 }
 
 function getPuzzle(id) {
-  return db("puzzles").where("id", "=", id);
+  return db("puzzles")
+    .where("id", "=", id)
+    .first();
 }
 
 function getWords(id) {

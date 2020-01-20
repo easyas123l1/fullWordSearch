@@ -18,7 +18,7 @@ exports.up = function(knex) {
 
       tbl.string("password", 8000).notNullable();
 
-      tbl.date("created").notNullable();
+      tbl.string("created").notNullable();
 
       tbl.string("fullname", 255);
 

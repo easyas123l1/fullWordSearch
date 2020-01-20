@@ -85,8 +85,8 @@ exports.up = function(knex) {
 
 exports.down = function(knex) {
   return knex.schema
-    .dropTableIfExists("roles")
-    .dropTableIfExists("users")
+    .dropTableIfExists("words")
     .dropTableIfExists("puzzles")
-    .dropTableIfExists("words");
+    .dropTableIfExists("users")
+    .dropTableIfExists("roles");
 };

@@ -1,3 +1,5 @@
+const Users = require("./user-model.js");
+
 module.exports = {
   validRegLog,
   createUser,

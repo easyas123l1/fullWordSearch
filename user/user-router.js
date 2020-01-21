@@ -3,7 +3,11 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const Users = require("./user-model.js");
-const { validRegLog, createUser } = require("./user-middleware");
+const {
+  validRegLog,
+  createUser,
+  validateUserId
+} = require("./user-middleware");
 const restricted = require("../auth/restricted-middleware");
 
 router.post("/register", validRegLog, createUser, (req, res) => {
@@ -41,6 +45,12 @@ router.post("/login", validRegLog, (req, res) => {
       console.log(err);
       res.status(500).json({ message: "server crashed while trying to login" });
     });
+});
+
+// get logged in user info
+router.get("/:id", validateUserId, (req, res) => {
+  const { username, id } = req.user;
+  res.status(200).json({ username, id });
 });
 
 // update user info

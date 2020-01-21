@@ -49,6 +49,8 @@ router.post("/login", validRegLog, (req, res) => {
 
 // get logged in user info
 router.get("/:id", validateUserId, restricted, (req, res) => {
+  console.log(req);
+  console.log(req.user);
   const { username, id } = req.user;
   res.status(200).json({ username, id });
 });

@@ -70,7 +70,7 @@ router.put("/:id", restricted, (req, res) => {
 });
 
 // logout user
-router.get("/logout", (req, res) => {
+router.get("/logout", restricted, (req, res) => {
   console.log(req.session);
   if (req.session) {
     req.session.destroy(err => {
